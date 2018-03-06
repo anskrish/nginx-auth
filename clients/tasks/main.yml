@@ -1,0 +1,21 @@
+---
+- name: install postgresql clinet
+  apt: name={{ item }} state=present update_cache=yes
+  with_items: "{{ package }}"
+- name: install pexpect on client machine
+  pip: name=pexpect
+- name: Create the Password File Using the OpenSSL Utilities
+  command: sudo sh -c "echo -n '{{ user }}:' >> /etc/nginx/.htpasswd"
+- name: update password
+  expect:
+    command: sudo sh -c "openssl passwd -apr1 >> /etc/nginx/.htpasswd"
+    responses:
+      (?i)password: "{{ password }}"
+- name: Clone bitbucket repo
+  git:
+    repo: https://github.com/hollodotme/readis.git
+    dest: /var/www/readis
+- name: Edit the nginx config file 
+  template: src=nginx.cfg.j2 dest=/etc/nginx/sites-enabled/default owner=root group=root mode=777
+  notify: restart nginx
+

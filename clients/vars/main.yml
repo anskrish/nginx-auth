@@ -1,0 +1,10 @@
+---
+package:
+  - postgresql
+  - postgresql-contrib
+  - redis-server
+  - mysql-client
+  - nginx
+  - python-pip
+user: raju
+password: raju

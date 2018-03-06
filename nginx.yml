@@ -1,0 +1,5 @@
+---
+- name: install client 
+  hosts: client
+  roles:
+    - clients 
