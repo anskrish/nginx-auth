@@ -1,5 +1,5 @@
 ---
 - name: install client server jsdsds
-  hosts: client
+  hosts: clienti1
   roles:
     - clients 
