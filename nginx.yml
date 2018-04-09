@@ -1,5 +1,5 @@
 ---
-- name: install client 
+- name: install client server
   hosts: client
   roles:
     - clients 
